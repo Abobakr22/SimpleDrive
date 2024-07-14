@@ -1,0 +1,6 @@
+@SimpleDrive_HostAddress = http://localhost:5122
+
+GET {{SimpleDrive_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
