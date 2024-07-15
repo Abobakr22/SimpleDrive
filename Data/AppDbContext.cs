@@ -7,6 +7,7 @@ using System.Reflection.Metadata;
 public class AppDbContext : IdentityDbContext<ApplicationUser>
 {
     public DbSet<SimpleDrive.Models.Blob> Blobs { get; set; }
+    public DbSet<StorageSettings> StorageSettings { get; set; }
 
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
@@ -17,5 +18,6 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<SimpleDrive.Models.Blob>().HasKey(b => b.Id);
+        modelBuilder.Entity<StorageSettings>().HasKey(s => s.Id);
     }
 }

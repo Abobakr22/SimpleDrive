@@ -43,21 +43,23 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
 
 //builder.Services.Configure<StorageSettings>(builder.Configuration.GetSection("StorageSettings"));
-builder.Services.Configure<DatabaseStorageSettings>(builder.Configuration.GetSection("StorageSettings:Database"));
 builder.Services.Configure<S3StorageSettings>(builder.Configuration.GetSection("StorageSettings:S3"));
 builder.Services.Configure<FTPStorageSettings>(builder.Configuration.GetSection("StorageSettings:FTP"));
 builder.Services.Configure<LocalStorageSettings>(builder.Configuration.GetSection("StorageSettings:Local"));
+builder.Services.Configure<DatabaseStorageSettings>(builder.Configuration.GetSection("StorageSettings:Database"));
 
 
 builder.Services.AddSingleton<HttpClient>();
 
-//builder.Services.AddTransient<IStorageService, FTPStorageService>();
 builder.Services.AddTransient<IStorageService, S3StorageService>();
+builder.Services.AddTransient<IStorageService, FTPStorageService>();
 builder.Services.AddTransient<IStorageService, LocalStorageService>();
 builder.Services.AddScoped<IStorageService, DatabaseStorageService>();
 
-builder.Services.AddControllers();
 
+
+
+builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

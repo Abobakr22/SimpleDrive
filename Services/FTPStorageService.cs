@@ -2,10 +2,11 @@
 using Microsoft.Extensions.Options;
 using SimpleDrive.Models;
 using SimpleDrive.Models.Settings;
+using SimpleDrive.Services.IServices;
 
 namespace SimpleDrive.Services
 {
-    public class FTPStorageService 
+    public class FTPStorageService : IStorageService
     {
         private readonly FTPStorageSettings _settings;
 
